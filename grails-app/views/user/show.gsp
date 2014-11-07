@@ -23,6 +23,33 @@
 			</g:if>
 			<ol class="property-list user">
 			
+				<g:if test="${userInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="user.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${userInstance?.email}">
+				<li class="fieldcontain">
+					<span id="email-label" class="property-label"><g:message code="user.email.label" default="Email" /></span>
+					
+						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${userInstance}" field="email"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${userInstance?.password}">
+				<li class="fieldcontain">
+					<span id="password-label" class="property-label"><g:message code="user.password.label" default="Password" /></span>
+					
+						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${userInstance}" field="password"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${userInstance?.age}">
 				<li class="fieldcontain">
 					<span id="age-label" class="property-label"><g:message code="user.age.label" default="Age" /></span>
@@ -37,15 +64,6 @@
 					<span id="city-label" class="property-label"><g:message code="user.city.label" default="City" /></span>
 					
 						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${userInstance}" field="city"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${userInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="user.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="name"/></span>
 					
 				</li>
 				</g:if>
