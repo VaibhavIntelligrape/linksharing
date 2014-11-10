@@ -1,11 +1,12 @@
 package com.linksharing
 
+import linksharing.UserPersistService
 import org.grails.datastore.mapping.core.DatastoreUtils
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -15,6 +16,28 @@ class UserController {
         log.info("User Controller :: index() started ...")
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model:[userInstanceCount: User.count()]
+    }
+
+    def loginHandler(){
+
+        println("UserController :: loginHandler() started...")
+        String email= params.get("email")
+        String password=params.get("password")
+
+        User user =User.findByEmail(email)
+        println("USER :: "+user)
+
+        if(user?.password==password){
+            session["user"] = user.name
+            println("sesion name :::: "+session["user"])
+            println("COrrect User ::  going to redirect .... ")
+            redirect(controller:'login',action:'index')
+        }
+        else{
+            /*request.setAttribute("msg","Please correct input.")*///how to prompt error on login page on incorrect input.
+            redirect(controller:'login',action:'index')
+            println "not correct user"}
+
     }
 
     def show(User userInstance) {

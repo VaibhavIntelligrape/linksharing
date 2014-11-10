@@ -4,8 +4,8 @@ package com.linksharing
 class Topic {
     String name;
     //User createdBy;
-    Date dateCreated;
-    Date lastupdated;
+    Date dateCreated
+    Date lastUpdated
     Visibilty visibility
 
     static belongsTo = [user : User]

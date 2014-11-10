@@ -9,10 +9,10 @@ class User {
     String password
     static hasMany = [topics : Topic,subscriptions:Subscription]
     static constraints = {
-        name validator: {
+      /*  name validator: {
             if (it.length()<3) return ['entryMissing']
         }
         email(email: true, unique: true, blank:false,nullable: false )
-        password(size: 5..15, blank: false)
+        password(size: 5..15, blank: false)*/
     }
 }
