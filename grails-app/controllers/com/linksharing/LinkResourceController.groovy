@@ -1,12 +1,72 @@
 package com.linksharing
 
-
+import linksharing.UserPersistService
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 class LinkResourceController {
+
+
+    def addUserLinkResource(){
+
+    //String id,String linkUrl,String topic,User user,String desc
+
+    String userId=session["user_id"]
+        def linkResource = new LinkResource(params)
+        println params
+        linkResource.properties = params
+        println("LinkRes :: - "+linkResource.properties)
+        String topicId=params["topicId"]
+        UserPersistService userPersistService=new UserPersistService()
+        userPersistService.addLinkResource(userId,linkResource,topicId)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -100,5 +160,5 @@ class LinkResourceController {
             }
             '*'{ render status: NOT_FOUND }
         }
-    }
+    }*/
 }

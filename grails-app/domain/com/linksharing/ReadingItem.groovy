@@ -5,6 +5,8 @@ package com.linksharing
  */
 class ReadingItem {
 
+    Date dateCreated;
+    Date lastUpdated;
     boolean isRead;
     static belongsTo = [user : User,resource: Resource]
 }

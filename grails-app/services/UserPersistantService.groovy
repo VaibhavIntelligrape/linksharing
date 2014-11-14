@@ -9,8 +9,8 @@ class UserPersistantService {
         public createUser(){
             println "UserPersistantService :: createUser() started..."
             List<User> list=[];
-            User obj1=new User(name:"Vaibhav",age:24,city:"New Delhi",email:"vaibhav@gmail.com",password:"12345")
-            User obj2=new User(name:"Naman",age:26,city:"Delhi",email:"ankit@gmail.com",password:"123456")
+            User obj1=new User(name:"Vaibhav",age:24,city:"New Delhi",email:"vaibhav@gmail.com",password:"12345",confirmPassword: "12345")
+            User obj2=new User(name:"Naman",age:26,city:"Delhi",email:"ankit@gmail.com",password:"123456",confirmPassword: "123456")
                 list.add(obj1)
                 list.add(obj2)
                 obj1.save()
@@ -24,10 +24,25 @@ class UserPersistantService {
             List<Topic> topicList=[];
             Topic to1=new Topic(name:"Grails",visibility: Visibilty.PUBLIC,user:u1)
             to1.save()
-            Topic to2=new Topic(name:"Node.js",visibility: Visibilty.PUBLIC,user:u2)
+            User user=User.get(1)
+            println user.properties
+            println("Will not show topics of user :: "+user.topics)
+            user.addToTopics(to1)
+        println("Will show topics of user :: "+user.topics)
+
+        Topic to2=new Topic(name:"Node.js",visibility: Visibilty.PUBLIC,user:u2)
             to2.save()
-            topicList.add(to1)
+
+        User user1=User.get(2)
+        println("Will not show topics of user :: "+user1.topics)
+        user1.addToTopics(to2)
+        println("Will show topics of user :: "+user1.topics)
+
+        topicList.add(to1)
             topicList.add(to2)
+        /*User user = User.get(1)
+        println ("user name:  "+user.name)
+        println ("user topics:  "+user.topics)*/
             println("UserPersistantService :: Topic List :: "+topicList)
         return topicList
     }
@@ -45,8 +60,9 @@ class UserPersistantService {
 }
   public createLinkResource(List<User> userList,List<Topic> topicList){
         List<Resource> resourceList=[]
-        for(i in 1..10){
+        for(i in 1..11){
             LinkResource lr=new LinkResource(url :"http://www.youtube${i}.com/",topic: topicList[0],user: userList[0],description: "Description${i}")
+            println("lr :: "+lr.properties)
             resourceList.add(lr)
             lr.save()
         }
@@ -94,6 +110,15 @@ class UserPersistantService {
             println("${it}"+it.properties)
         }
         }
+
+        public resourceRating(int rate,User user,Resource resource){
+
+       ResourceRating resourceRating=new ResourceRating(score: rate,user:  user,resource:  resource)
+            resourceRating.save()
+
+    }
+
+
 
 
         }

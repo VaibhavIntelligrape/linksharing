@@ -66,4 +66,36 @@ environments {
             }
         }
     }
+
+    qa {
+        dataSource {
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost/fameLive_qa"
+            username = "root"
+            password = "igdefault"
+//            loggingSql = true
+            properties {
+                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
+                jmxEnabled = true
+                initialSize = 5
+                maxActive = 70
+                minIdle = 1
+                maxIdle = 25
+                maxWait = 10000
+                numTestsPerEvictionRun = 3
+                maxAge = 10 * 60000
+                timeBetweenEvictionRunsMillis = (1000 * 60 * 5)
+                minEvictableIdleTimeMillis = (1000 * 60 * 5)
+                validationQuery = "SELECT 1"
+                validationQueryTimeout = 3
+                validationInterval = 15000
+                testOnBorrow = true
+                testWhileIdle = true
+                testOnReturn = false
+                jdbcInterceptors = "ConnectionState"
+                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+            }
+        }
+
+    }
 }

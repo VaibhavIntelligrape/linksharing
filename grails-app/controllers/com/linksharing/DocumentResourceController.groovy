@@ -1,6 +1,6 @@
 package com.linksharing
 
-
+import linksharing.UserPersistService
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -8,7 +8,31 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DocumentResourceController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def addUserDocumentResource(){
+
+        //String id,String linkUrl,String topic,User user,String desc
+
+        String userId=session["user_id"]
+        DocumentResource documentResource=new DocumentResource()
+        /*linkResource = new LinkResource(params)*/
+        //println params
+        def f = params.doc
+        println "file: ${f.inputStream.text}"
+        println params
+        documentResource.properties = params
+        String topicId=params["topicId"]
+        println("topic ID"+topicId)
+        UserPersistService userPersistService=new UserPersistService()
+        userPersistService.addDocumentResource(userId,documentResource,topicId)
+    }
+
+
+
+
+
+
+    /*static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -100,5 +124,5 @@ class DocumentResourceController {
             }
             '*'{ render status: NOT_FOUND }
         }
-    }
+    }*/
 }

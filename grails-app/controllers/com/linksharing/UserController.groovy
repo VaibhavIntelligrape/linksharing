@@ -29,8 +29,11 @@ class UserController {
 
         if(user?.password==password){
             session["user"] = user.name
+            session["user_id"] = user.id
             println("sesion name :::: "+session["user"])
             println("COrrect User ::  going to redirect .... ")
+
+            params["userObject"]=user
             redirect(controller:'login',action:'index')
         }
         else{

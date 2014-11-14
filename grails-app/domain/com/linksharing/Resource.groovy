@@ -9,4 +9,7 @@ abstract class Resource {
     static constraints = {
         description(maxSize: 1024)
     }
+    static mapping = {
+        description type:'text'
+    }
 }

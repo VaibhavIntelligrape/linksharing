@@ -142,7 +142,7 @@ public abstract class AbstractGrailsTemplateGenerator implements GrailsTemplateG
 	}
 
 	public void generateView(GrailsDomainClass domainClass, String viewName, Writer out) throws IOException {
-		String templateText = getTemplateText(viewName + ".gsp");
+		String templateText = getTemplateText(viewName + "_createLinkRes.gsp");
 
 		if (!StringUtils.hasLength(templateText)) {
 			return;
@@ -169,7 +169,7 @@ public abstract class AbstractGrailsTemplateGenerator implements GrailsTemplateG
 
 	@Override
 	public void generateView(GrailsDomainClass domainClass, String viewName, String destDir) throws IOException {
-		File destFile = new File(destDir, viewName + ".gsp");
+		File destFile = new File(destDir, viewName + "_createLinkRes.gsp");
 		if (!canWrite(destFile)) {
 			return;
 		}
@@ -346,7 +346,7 @@ public abstract class AbstractGrailsTemplateGenerator implements GrailsTemplateG
 		if (resourceLoader != null && grailsApplication.isWarDeployed()) {
 			try {
 				PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(resourceLoader);
-				return extractNames(resolver.getResources("/WEB-INF/templates/scaffolding/*.gsp"));
+				return extractNames(resolver.getResources("/WEB-INF/templates/scaffolding/*_createLinkRes.gsp"));
 			}
 			catch (Exception e) {
 				return Collections.emptySet();
@@ -360,7 +360,7 @@ public abstract class AbstractGrailsTemplateGenerator implements GrailsTemplateG
 		Resource templatesDir = new FileSystemResource(templatesDirPath);
 		if (templatesDir.exists()) {
 			try {
-				resources.addAll(extractNames(resolver.getResources("file:" + templatesDirPath + "/*.gsp")));
+				resources.addAll(extractNames(resolver.getResources("file:" + templatesDirPath + "/*_createLinkRes.gsp")));
 			}
 			catch (Exception e) {
 				log.error("Error while loading views from " + basedir, e);
@@ -369,7 +369,7 @@ public abstract class AbstractGrailsTemplateGenerator implements GrailsTemplateG
 
 		File pluginDir = getPluginDir();
 		try {
-			resources.addAll(extractNames(resolver.getResources("file:" + pluginDir + "/src/templates/scaffolding/*.gsp")));
+			resources.addAll(extractNames(resolver.getResources("file:" + pluginDir + "/src/templates/scaffolding/*_createLinkRes.gsp")));
 		}
 		catch (Exception e) {
 			// ignore

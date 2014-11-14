@@ -21,6 +21,7 @@ class BootStrap {
         userPersistantService.createReadingItem(userList,resourceList)
         /*userPersistantService.markAsRead*/
         userPersistantService.unreadItemList()
+        userPersistantService.resourceRating(5,userList.get(0),resourceList.get(0))
 
     }
     def destroy = {
