@@ -13,29 +13,64 @@
 
 <body>
 <%List<Topic> ls=params["trendingTopicList"]
-
 %>
 
-<table align="left" border="1" cellpadding="1" cellspacing="1" style="width: 500px;width: 500px;>
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
     <thead>
     <tr>
         <th colspan="2" scope="row">
-            <div div style="background: none repeat scroll 0% 0% rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: left;">Trending Topics</div>
+            <div style="  padding: 5px 10px;">Trending Topics</div>
         </th>
     </tr>
     </thead>
     <tbody>
-    <%ls.each {
+    <%ls.each {if (it!=null ){
     %>
+    <%if(session["user_id"]==it.user.id){%>
     <tr>
         <th scope="row" style="text-align: left;">
-            <p>UserName &nbsp; <g:diffTime val="${it.lastUpdated}" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${it.name}<br />
-                &nbsp;</p>
-            Total Posts :- ${it.resources.size()} </p>
-            Total Subscription :- ${it.subscriptions.size()} </p>
-        </th>
-        <th scope="row" style="text-align: left;">&nbsp;</th>
+            <g:form method="get" url="[controller:'Topic',action:'createUserTopic']">
+                <div>
+                    <div style="float: left">
+                <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="45"  /></p>
+                    </div>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="name" type="text" value="${it.name}" /><input name="save" type="submit" value="Save" />
+
+                        <div>
+                            <div style="float: left;padding-left: 170px">
+                                <p>Subscription</p>
+                                <p>${it.subscriptions.size()}</p>
+                            </div>
+                            <div>
+                                <p>Topics</p>
+                                <p>${it.resources.size()}</p>
+                            </div>
+
+
+                            <p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <select name="seriousness"><option value="Serious">Serious</option><option value="VerySerious">VerySerious</option> </select> <select name="visibility"><option value="PRIVATE">PRIVATE</option><option value="PUBLIC">PUBLIC</option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </select>&nbsp;&nbsp; <img alt="mail" height="23" src="http://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/plugins/smiley/images/envelope.png" title="mail" width="23" /></p>
+                </div>
+                </div>
+            </g:form>        </th>
     </tr>
+    <%}else{%>
+    <tr>
+        <th scope="row" style="text-align: left;">
+                <div style="float: left">
+                    <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="45"  />&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+                </div>
+                <div style="">
+               <g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'><p>${it.name}</p></g:link>
+                    <p> ${it.user.email}</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subscribe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subscription&nbsp;&nbsp; post</p>
+
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${it.subscriptions.size()}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;${it.resources.size()}&nbsp;</p>
+                </br>
+
+                </div>
+        </th>
+    </tr>
+    <% }}%>
     <% }%>
     %{--<tr>l
         <th scope="row" style="text-align: left;">

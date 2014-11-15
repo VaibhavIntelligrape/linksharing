@@ -4,55 +4,68 @@
   Date: 10/11/14
   Time: 3:23 PM
 --%>
-<%@ page import="com.linksharing.Resource" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.linksharing.User; com.linksharing.Resource" %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="layout" content="main">
     <title></title>
 </head>
 
 <body>
-</br>
-%{--<g:recentShares/>--}%
 
+<body>
 <%
-    List<Resource> ls=(List<Resource>)request.getAttribute("resourceList")
+    List<Resource> ls=(List<Resource>)request.getAttribute("resourceList")%>
 
-    /*println("ls :: "+ls)*/
-/*
-    out << "TopicName : " +(ls.get(0).topic.name)
-    out <<  "ResourceDescription : " +(ls.get(0).description)
-    out <<  "TopicName : " +(ls.get(1).topic.name)
-    out <<  "ResourceDescription : " +(ls.get(1).description)*/
-%>
-
-<table align="left" border="0" cellpadding="1" cellspacing="1" style="width: 485px;">
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
     <thead>
     <tr>
-        <th scope="row">
-            <div style="background: none repeat scroll 0% 0% rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: left;"><b>Recent Shares</b></div>
+        <th colspan="2" scope="row">
+            <div style="  padding: 5px 10px;">Recent Shares </div>
         </th>
     </tr>
     </thead>
     <tbody>
+    <%ls.each {
+    %>
     <tr>
         <th scope="row" style="text-align: left;">
             <div>
-            <p><%=ls.get(0).topic.name%> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserName</p>
-            </div>
-            <p><%=ls.get(0).description%></p>
-        </th>
-    </tr>
-    <tr>
-        <th scope="row" style="text-align: left;">
-            <p><%=ls.get(1).topic.name%> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserName</p>
+                <div style="float: left;">
+                   <%if(it.user.image!=null){%>
+                    <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="55"  />
+                    <%}else{%>
+                    <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/assets/person1.jpeg" width="55"  />
+                    <%}%>
+                </div>
+                <div>
+                    <p>${it.user.name} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
+                        &nbsp;</p>
+                    <p >${it.user.email}</p>
+                    ${it.description} </p>
 
-            <p><%=ls.get(1).description%></p>
+                </div>
+                <div>
+                    <p><img alt="" src="/linksharing/assets/fb.jpeg" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/twitter_ico.png" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/gPlus.png" width="15"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>Download</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewFullSite</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>MarkAsRead</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewPost</u></span></span></p>
+                </div>
+            </div>
         </th>
     </tr>
+    <% }%>
+    %{--<tr>
+        <th scope="row" style="text-align: left;">
+            <p>UserName &nbsp; <%= ls.get(1).lastUpdated %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= ls.get(1).topic.name %><br />
+                &nbsp;</p>
+
+            <p><%= ls.get(1).description %></p>
+        </th>
+        <th scope="row" style="text-align: left;">&nbsp;</th>
+    </tr>--}%
     </tbody>
 </table>
+
+%{--<g:userInbox/>--}%
 </br>
------------------------------------------------------------------------------------------------------------------------------------------
 </body>
 </html>

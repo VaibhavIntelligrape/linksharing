@@ -9,7 +9,7 @@ class UserPersistantService {
         public createUser(){
             println "UserPersistantService :: createUser() started..."
             List<User> list=[];
-            User obj1=new User(name:"Vaibhav",age:24,city:"New Delhi",email:"vaibhav@gmail.com",password:"12345",confirmPassword: "12345")
+            User obj1=new User(name:"Vaibhav",age:24,city:"New Delhi",email:"vaibhav@gmail.com",password:"12345",confirmPassword: "12345",image:"VAIBHAV.jpg")
             User obj2=new User(name:"Naman",age:26,city:"Delhi",email:"ankit@gmail.com",password:"123456",confirmPassword: "123456")
                 list.add(obj1)
                 list.add(obj2)

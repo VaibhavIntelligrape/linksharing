@@ -26,9 +26,11 @@
 <div>
 <g:render template="subscription"  />
 </div>
+
 <div style="border:solid thick ;border-radius: 25px;height:250px;width:450px;overflow:scroll;margin-bottom: 2px">
 <g:render template="trending_topics"  />
 </div>
+
 <div style="border:solid thick ;border-radius: 25px;height:250px;width:450px;overflow:scroll;margin-bottom: 2px">
 <g:render template="createLinkRes"  />
 </div>

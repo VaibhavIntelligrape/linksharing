@@ -30,7 +30,8 @@
         </div>
     </div>
 <div style="float: left">
-    <div style="border:solid thick ;float: left;clear: left;float: left;height:200px;width:500px;overflow:scroll;">
+    %{--<div style="border:solid thick ;float: left;clear: left;float: left;height:200px;width:500px;overflow:scroll;">--}%
+    <div style="border:solid thick ;border-radius: 25px;height:250px;width:450px;overflow:scroll;">
         <g:render template="recent_shares"  />
     </div>
 

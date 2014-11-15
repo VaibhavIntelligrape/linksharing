@@ -11,7 +11,7 @@ class HomeController {
         println("In dsh....")
 
         println "Welcome ,"+session["user"]
-        println("User ID From session :: "+session["userId"])
+        println("User ID From session :: "+session["user_id"])
 
             String uId=session["user_id"]
 
@@ -21,6 +21,7 @@ class HomeController {
          //For user detail page :-
          User user=userPersistService.returnUser(uId)
          params["userObject"]=user
+            println("Usr :- "+user.properties)
 
         /*List<Subscription> subscriptionList=userPersistService.returnUserSubscriptions(user.id)
            String totalUserSubscriptions= subscriptionList.size()*/
@@ -53,6 +54,8 @@ class HomeController {
             List<Topic> trendingTopicList=userPersistService.getTrendingTopics()
                 params["trendingTopicList"]=trendingTopicList
 
+
+            userPersistService.returnUserSubscriptions1(user)
         }
     }
 }

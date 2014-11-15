@@ -28,6 +28,8 @@ class LoginController {
         println("resourceList :: "+resourceList)
         request.setAttribute("resourceList",resourceList)
 
+        println("date :-"+new Date().dateTimeString)
+
        /* List<ResourceRating> resourceRatingList=userPersistService.returnResourceRating()
         println("ResourceRatingList :- "+resourceRatingList)*/
     }

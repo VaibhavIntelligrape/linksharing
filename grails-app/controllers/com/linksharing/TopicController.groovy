@@ -25,9 +25,38 @@ class TopicController {
     }
 
     def topicShow(){
-        //For user detail page :-
-        String uId=session["user_id"]
+
+        println("PARAMS :- "+params)
         UserPersistService userPersistService =new UserPersistService()
+        String topicId=params["tid"]
+        Topic topic=Topic.findById(topicId)
+
+        params["topicObject"]=topic
+
+        //to take total users of a topic :-
+        println( "---------------------")
+        List<User> userList  = Subscription.createCriteria().list {
+            projections{
+                property("user")
+            }
+            eq("topic",topic )
+        }
+
+        println("USERList :- "+userList)
+        params["subscribedUserList"]=userList
+
+
+        List<Resource> resourceList=Resource.findAllByTopic(topic)
+        println("Resource List of particular topic :- "+resourceList)
+        params["resourceList"]=resourceList
+
+
+
+        //For user detail page :-
+
+
+        String uId=session["user_id"]
+
         User user=userPersistService.returnUser(uId)
         params["userObject"]=user
 
@@ -43,6 +72,10 @@ class TopicController {
         println("TopicList SIze :- "+topicList.size())
         params["userTopicList"]=topicList
         params["userTopicListSize"]=topicList.size()
+
+
+
+
 
     }
 

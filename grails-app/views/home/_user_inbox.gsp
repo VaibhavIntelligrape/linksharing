@@ -5,7 +5,7 @@
   Time: 3:23 PM
 --%>
 <%@ page import="com.linksharing.User; com.linksharing.Resource" %>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <meta name="layout" content="main">
@@ -28,7 +28,7 @@ ls.each {
 <%User user=params["userObject"]
     %>
 
-<table align="left" border="1" cellpadding="1" cellspacing="1" style="width: 500px;width: 500px;">
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
     <thead>
     <tr>
         <th colspan="2" scope="row">
@@ -46,9 +46,9 @@ ls.each {
             <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${user.image}" width="55"  />
             </div>
             <div>
-            <p>${it.user.name} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
-                &nbsp;</p>
-             <p >${it.user.email}</p>
+            <p>${it.user.name} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> %{--<g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'>--}%${it.topic.name}%{--</g:link>--}%</span><br />
+                &nbsp;${it.user.email}</p>
+             </br>
             ${it.description} </p>
 
              </div>
@@ -57,7 +57,6 @@ ls.each {
                 </div>
         </div>
         </th>
-        <th scope="row" style="text-align: left;">&nbsp;</th>
     </tr>
    <% }%>
     %{--<tr>
