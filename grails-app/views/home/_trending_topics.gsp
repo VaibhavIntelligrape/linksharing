@@ -15,7 +15,7 @@
 <%List<Topic> ls=params["trendingTopicList"]
 %>
 
-<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:440px ;height: 300px">
     <thead>
     <tr>
         <th colspan="2" scope="row">

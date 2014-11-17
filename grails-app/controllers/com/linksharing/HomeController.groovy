@@ -56,6 +56,8 @@ class HomeController {
 
 
             userPersistService.returnUserSubscriptions1(user)
+
+
         }
     }
 }

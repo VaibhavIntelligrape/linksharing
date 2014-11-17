@@ -17,12 +17,12 @@ String userTopicListSize=params["userTopicListSize"]
     <div style="float: left">
     &nbsp;&nbsp; &nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${user.image}" width="55" height="65" />
     </div>
-    <div style="width: 200px">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${user.name}
+    <div style="width: 300px;margin-left: 100px">
+        <span> ${user.firstName} ${user.lastName}</span>
     </div>
     </div>
     <div>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @${user.email}</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @${user.username}</p>
 
     <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
 

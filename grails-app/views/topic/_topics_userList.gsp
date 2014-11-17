@@ -44,7 +44,7 @@ Topic topic=params["topicObject"]
                <div>
                 <div>
 
-                    <p>${it.name}</p>
+                    <p>${it.firstName}</p>
                     <p>${it.email}</p>
 
                 </div>

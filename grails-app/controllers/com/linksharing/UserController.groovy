@@ -11,6 +11,27 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def beforeInterceptor = [action: this.&auth, only: 'list']
+// defined with private scope, so it's not considered an action
+    private auth() {
+
+        String uid=session["user_id"]
+        User user=User.findById(uid)
+        if(user.isAdmin.equals("true")){
+            return true
+        }
+        else{
+            redirect(url: '/')
+            return false}
+    }
+
+    def list(){
+            List<User> userList=User.findAll()
+            params["userList"]=userList
+    }
+
+
+
     def index(Integer max) {
         //log.error("User Controller :: index() started ...")
         log.info("User Controller :: index() started ...")
@@ -18,30 +39,7 @@ class UserController {
         respond User.list(params), model:[userInstanceCount: User.count()]
     }
 
-    def loginHandler(){
 
-        println("UserController :: loginHandler() started...")
-        String email= params.get("email")
-        String password=params.get("password")
-
-        User user =User.findByEmail(email)
-        println("USER :: "+user)
-
-        if(user?.password==password){
-            session["user"] = user.name
-            session["user_id"] = user.id
-            println("sesion name :::: "+session["user"])
-            println("COrrect User ::  going to redirect .... ")
-
-            params["userObject"]=user
-            redirect(controller:'login',action:'index')
-        }
-        else{
-            /*request.setAttribute("msg","Please correct input.")*///how to prompt error on login page on incorrect input.
-            redirect(controller:'login',action:'index')
-            println "not correct user"}
-
-    }
 
     def show(User userInstance) {
         log.info("User Controller :: Show() started ...")

@@ -30,11 +30,13 @@ class BootStrap {
 
         UserPersistService userPersistService = new UserPersistService()
 
-        User obj = new User(name: "Vaibhav", age: 24, city: "New Delhi", email: "vaibhav@gmail.com", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg")
+        User obj = new User(firstName: "Vaibhav",lastName: "Sharma",email: "vaibhav@gmail.com",username: "vaibhav", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg",isAdmin: "false")
         userPersistService.createUser(obj)
-        User obj1 = new User(name: "Mohit", age: 24, city: "New Delhi", email: "mohti@gmail.com", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg")
+
+        User obj1 = new User(firstName: "Mohit",lastName: "Sharma",email: "mohit@gmail.com",username: "mohit", password: "12345", confirmPassword:  "12345", image: "VAIBHAV.jpg",isAdmin: "false")
         userPersistService.createUser(obj1)
-        User obj2 = new User(name: "Sujeet", age: 24, city: "Noida", email: "sujett@gmail.com", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg")
+
+        User obj2 = new User(firstName: "Sujeet",lastName: "Kumar",email: "sujeet@gmail.com",username: "sujeet", password: "12345", confirmPassword:  "12345", image: "VAIBHAV.jpg",isAdmin: "false")
         userPersistService.createUser(obj2)
 
         //to create topic :-
@@ -66,6 +68,13 @@ class BootStrap {
         userPersistService.addLinkResource(obj.id.toString(), lr2, to1.id.toString())
         LinkResource lr3 = new LinkResource(url: "http://www.intelligrape.com/", topic: to2, user: obj, description: "Added by Vaibhav in Aws")
         userPersistService.addLinkResource(obj.id.toString(), lr3, to2.id.toString())
+
+        //to rate the resources :-
+        userPersistService.resourceRating(5,obj,lr)
+        userPersistService.resourceRating(4,obj1,lr)
+        userPersistService.resourceRating(3,obj2,lr)
+        userPersistService.resourceRating(5,obj2,lr1)
+        userPersistService.resourceRating(5,obj1,lr1)
 
     }
     def destroy = {

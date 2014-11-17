@@ -40,7 +40,7 @@
                     <%}%>
                 </div>
                 <div>
-                    <p>${it.user.name} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
+                    <p>${it.user.firstName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
                         &nbsp;</p>
                     <p >${it.user.email}</p>
                     ${it.description} </p>

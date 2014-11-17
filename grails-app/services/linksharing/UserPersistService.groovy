@@ -18,16 +18,18 @@ class UserPersistService {
     public createUser(User user){
         println "UserPersist Service :: createUser() started..."
         println("UserPersist Service :: User Details :- "+user)
-        user.save()
-        if (!user.save()) {
+        if (user.save()) {
+            user.save()
+            return true
+        }
+/*println user.errors.allErrors*/
+        else {
             user.errors.each {
                 println it
             }
-            return false
-        }
-/*println user.errors.allErrors*/
-        else {return true}
-        println("In UserPer...... :: "+user.name)
+            return false}
+
+        println("IN Create User ...... :: "+user.firstName)
     }
     public recentShares(){
         println("Recent Shars :::")
@@ -198,5 +200,36 @@ println( "Count ::- "+userCount)*/
            }
     def createSubscription(Subscription subscription) {
         subscription.save()
+    }
+
+
+    def returnFullResource(String rid) {
+        Resource resource=Resource.findById(rid)
+        return resource
+
+    }
+    public resourceRating(int rate,User user,Resource resource){
+
+        ResourceRating resourceRating=new ResourceRating(score: rate,user:  user,resource:  resource)
+        resourceRating.save()
+
+    }
+
+    public searchService(String searchString){
+
+        //List<Resource> resourceList=Resource.findAllByDescription
+        List<Resource> resourceList = Resource.createCriteria().list {
+            or {
+                ilike("description", "%${searchString}%")
+                ilike("url", "%${searchString}%")
+                'topic' {
+                    ilike("name", "%${searchString}%")
+                }
+            }
+        }
+        /*resourceList.each {
+            println("Resouce Searched :- "+it.properties)
+        }*/
+        return resourceList
     }
 }

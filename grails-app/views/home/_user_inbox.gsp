@@ -16,18 +16,8 @@
 
 <body>
 <%List<Resource> ls=(List<Resource>)request.getAttribute("inboxList")
-/*out.println("Total Unread Resources :: "+ls.size())*/
-/*User user*//*
-println("Came in userINbox TagLib...")
-ls.each {
-    println(":::: "+it)
-    out << "Topic Name  :- "+it.topic
-    out << "Resource Description : -"+it.description
-    out << "Resource Date :- "+it.lastUpdated*/
+User user=params["userObject"]
 %>
-<%User user=params["userObject"]
-    %>
-
 <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
     <thead>
     <tr>
@@ -45,15 +35,15 @@ ls.each {
             <div style="float: left;">
             <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${user.image}" width="55"  />
             </div>
-            <div>
-            <p>${it.user.name} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> %{--<g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'>--}%${it.topic.name}%{--</g:link>--}%</span><br />
-                &nbsp;${it.user.email}</p>
+            <div style="margin-left: 80px">
+            <p>${it.user.firstName} ${it.user.lastName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 50px"> %{--<g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'>--}%${it.topic.name}%{--</g:link>--}%</span><br />
+                &nbsp;${it.user.username}</p>
              </br>
             ${it.description} </p>
 
              </div>
                 <div>
-                    <p><img alt="" src="/linksharing/assets/fb.jpeg" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/twitter_ico.png" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/gPlus.png" width="15"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>Download</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewFullSite</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>MarkAsRead</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewPost</u></span></span></p>
+                    <p><img alt="" src="/linksharing/assets/fb.jpeg" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/twitter_ico.png" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/gPlus.png" width="15"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>Download</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewFullSite</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>MarkAsRead</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u><g:link controller="post" action="index" params='[rid:"${it.id}"]'>ViewPost</g:link></u></span></span></p>
                 </div>
         </div>
         </th>

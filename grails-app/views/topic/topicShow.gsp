@@ -5,17 +5,39 @@
   Time: 7:24 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.linksharing.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main">
     <title></title>
 </head>
-
+<%User user=params["userObject"]
+    %>
 <body>
 <div class="container">
-<div class="header" style="height: 10px"></div>
-<div class="mainBody">
+<div class="header">
+
+    <div style="border: solid thick ;align-self: auto;height: 50px;">
+        <div style="float: left">
+            <header><b>LinkSharing App</b></header>
+        </div>
+        <div style="float: right; margin-top: 0px;">
+            <div style="float: right">
+
+                <input src="/linksharing/home/atchmnt.jpeg" name="submit" type="image"style="height: 15px ;width: 15px"><input src="/linksharing/home/page.png" name="submit" type="image"style="height: 15px ;width: 15px">
+                <input src="/linksharing/home/${user.image}" name="submit" type="image"style="height: 15px ;width: 15px">${user.username}<input src="/linksharing/home/drop.jpeg" name="submit" type="image"style="height: 15px ;width: 15px">
+            </div>
+            <div style="float: right">
+                <form id="search-form" name="search" action="/products" method="get">
+                    <input id="search-input" name="search" type="text">
+                    <input src="/linksharing/home/searchbutton3.gif" name="submit" type="image"style="height: 15px ;width: 15px">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="mainBody" style="margin-top: 10px">
 <div class="leftBody" style="float: left">
     <div style="border-style: solid; float:left;;width:auto;border-radius: 25px;margin-bottom: 10px;height:250px;width:450px;">
 <g:render template="topic_detail"></g:render>
