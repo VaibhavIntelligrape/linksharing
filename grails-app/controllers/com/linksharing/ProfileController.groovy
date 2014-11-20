@@ -37,6 +37,12 @@ class ProfileController {
         List<Topic> trendingTopicList=userPersistService.getTrendingTopics()
         params["trendingTopicList"]=trendingTopicList
 
+
+        //for only user's post :-
+        List<Resource> resourceList=userPersistService.returnUserCreatedResources(user)
+        params["userCreatedResrcList"]=resourceList
+
+
     }
 
     def profileEdit() {

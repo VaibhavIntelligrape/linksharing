@@ -19,7 +19,7 @@ class TopicController {
         //topic.visibility=params["visibility"]
         topic.user=user
         println("Topic object :- "+topic.properties)
-        userPersistService.saveTopic(topic)
+        userPersistService.createTopic(                                                                                                                                                                                                                                                                                                                                                                                     topic)
         //Topic to1=new Topic(name:"Grails",visibility: Visibilty.PUBLIC,user:u1)
         //to1.save()
     }

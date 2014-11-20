@@ -4,7 +4,7 @@
   Date: 10/11/14
   Time: 3:23 PM
 --%>
-<%@ page import="com.linksharing.Topic; com.linksharing.Resource" %>
+<%@ page import="com.linksharing.User; com.linksharing.Topic; com.linksharing.Resource" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -13,6 +13,7 @@
 
 <body>
 <%List<Topic> ls=params["trendingTopicList"]
+    User user=params["userObject"]
 %>
 
 <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:440px ;height: 300px">
@@ -43,17 +44,27 @@
                                 <p>${it.subscriptions.size()}</p>
                             </div>
                             <div>
-                                <p>Topics</p>
+                                <p>Posts</p>
                                 <p>${it.resources.size()}</p>
                             </div>
 
 
-                            <p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <select name="seriousness"><option value="Serious">Serious</option><option value="VerySerious">VerySerious</option> </select> <select name="visibility"><option value="PRIVATE">PRIVATE</option><option value="PUBLIC">PUBLIC</option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </select>&nbsp;&nbsp; <img alt="mail" height="23" src="http://www.quackit.com/html/online-html-editor/ckeditor/ckeditor_4.4.1_full/plugins/smiley/images/envelope.png" title="mail" width="23" /></p>
+                            <p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <select name="seriousness"><option value="Serious">Serious</option><option value="VerySerious">VerySerious</option> </select> <select name="visibility"><option value="PRIVATE">PRIVATE</option><option value="PUBLIC">PUBLIC</option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </select><img alt="mail" height="23" src="/linksharing/home/message.jpeg" title="mail" width="23" />
+                                <img alt="mail" height="23" src="/linksharing/home/editPage.jpeg" title="mail" width="23" />
+                                <img alt="mail" height="23" src="/linksharing/home/delete.jpeg" title="mail" width="23" /></p>
                 </div>
                 </div>
             </g:form>        </th>
     </tr>
-    <%}else{%>
+    <%}else{
+        String toId=it.id
+        String flag=false
+     user.subscriptions.each {
+         if(it.topic.id==toId){
+             flag=true
+         }
+     }
+    %>
     <tr>
         <th scope="row" style="text-align: left;">
                 <div style="float: left">
@@ -62,7 +73,7 @@
                 <div style="">
                <g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'><p>${it.name}</p></g:link>
                     <p> ${it.user.email}</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subscribe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subscription&nbsp;&nbsp; post</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%if(!flag==true){%>Subscribe<%}%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subscription&nbsp;&nbsp; post</p>
 
                 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${it.subscriptions.size()}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;${it.resources.size()}&nbsp;</p>
                 </br>

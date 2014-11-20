@@ -43,7 +43,7 @@ class MyCustomTagLib {
 
     }
     def diffTime={ myTime ->
-          println("Time in taglib :- "+myTime.get("val"))
+         // println("Time in taglib :- "+myTime.get("val"))
         Date date=new Date()
         TimeDuration tc=TimeCategory.minus(date,myTime.get("val"))
         out << "${tc.hours +"hrs,"+tc.minutes} min"

@@ -33,7 +33,7 @@ User user=params["userObject"]
         <th scope="row" style="text-align: left;">
             <div>
             <div style="float: left;">
-            <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${user.image}" width="55"  />
+            <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="55"  />
             </div>
             <div style="margin-left: 80px">
             <p>${it.user.firstName} ${it.user.lastName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 50px"> %{--<g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'>--}%${it.topic.name}%{--</g:link>--}%</span><br />

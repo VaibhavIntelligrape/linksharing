@@ -4,11 +4,11 @@
   Date: 10/11/14
   Time: 3:23 PM
 --%>
-<%@ page import="com.linksharing.LinkResourceController; com.linksharing.LinkResource; com.linksharing.Topic; com.linksharing.User; com.linksharing.Resource" %>
+<%@ page import="com.linksharing.Subscription; com.linksharing.LinkResourceController; com.linksharing.LinkResource; com.linksharing.Topic; com.linksharing.User; com.linksharing.Resource" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <body>
-<%List<Topic> topicList=params["userTopicList"]%>
+<%List<Subscription> topicList=params["subscriptionsList"]%>
 <div>
     %{--<form action="/abc" enctype="text/plain" id="share_link" method="get" name="Share Link" target="_self">Share Link</form>--}%
 <g:form url="[controller:'LinkResource',action:'addUserLinkResource']" method="get">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Share Link
@@ -21,7 +21,7 @@
 
     <p>Topic * : <select name="topicId">
         <%topicList.each {%>
-        <option value="${it.id}">${it.name}</option>
+        <option value="${it.topic.id}">${it.topic.name}</option>
 <%}%>
     </select></p>
 

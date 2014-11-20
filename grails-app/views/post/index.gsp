@@ -10,7 +10,10 @@
     <meta name="layout" content="main">
     <title></title>
 </head>
-<%User user=params["userObject"]%>
+<%User user=params["userObject"]
+println("User in post :index :: "+user.properties)
+%>
+
 <body>
 <div class="container">
     <div class="header">

@@ -42,6 +42,7 @@ grails.views.default.codec = "html"
 grails.controllers.defaultScope = 'singleton'
 
 // GSP settings
+
 grails {
     views {
         gsp {
@@ -57,8 +58,18 @@ grails {
         // escapes all not-encoded output at final stage of outputting
         // filteringCodecForContentType.'text/html' = 'html'
     }
-}
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "vaibhavs@intelligrape.com"
+        password = "ig123456"
+        props = ["mail.smtp.auth":"true",
+                "mail.smtp.socketFactory.port":"465",
+                "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                "mail.smtp.socketFactory.fallback":"false"]
 
+    }
+}
 
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
@@ -88,6 +99,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+     //  grails.serverURL = "http://www.vaibhav.com"
     }
     production {
         grails.logging.jul.usebridge = false

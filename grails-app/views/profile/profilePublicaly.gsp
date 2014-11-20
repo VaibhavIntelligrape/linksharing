@@ -41,15 +41,12 @@
                 <g:render template="/home/user_detail" />
             </div>
             <div style="border:solid thick ;float:right;border-radius: 25px;height:330px;width:450px;overflow:scroll;margin-bottom: 2px;margin-bottom: 10px">
-                <g:render template="/home/trending_topics" />
+                <g:render template="/profile/topicSection" />
             </div>
         </div>
         <div class="rightBody" style="float: right">
             <div style="border:solid thick ;float:right;border-radius: 25px;height:300px;width:450px;margin-top: 20px;margin-bottom: 10px">
-                <g:render template="/editUserForm"></g:render>
-            </div>
-            <div style="border:solid thick;float:right;clear:right;border-radius: 25px;height:150px;width:450px;margin-top: 20px;margin-bottom: 10px">
-                <g:render template="/editUserPassword"></g:render>
+                <g:render template="/userCreatedRes"></g:render>
             </div>
         </div>
 

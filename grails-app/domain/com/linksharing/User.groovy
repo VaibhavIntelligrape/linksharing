@@ -9,19 +9,19 @@ class User {
     String email
     String password
     String confirmPassword
-    //static  transients=['confirmPassword']
+    static  transients=['confirmPassword']
     String isAdmin
     static hasMany = [topics : Topic,subscriptions:Subscription]
+
+
     static constraints = {
+        confirmPassword (bindable:true)
         image (blank: true,nullable: true)
-        password (blank: false, nullable: false, size:4..10 ,
+        password (blank: false, nullable: false, size:4..10,
                 validator: {password, obj ->
-            def password2 = obj.properties["confirmPassword"]
-                    println("password2 :- "+password2)
-                    println("OBJ :- "+obj.properties)
-                    println("OBJ :- "+obj.password)
-                    println("password :: "+password)
-            password2 == password ? true : ["Password do not match"/*'invalid.matchingpasswords'*/]
+                    if(obj.confirmPassword != password){
+                        return ["Password do not match"]
+                    }
         })
        /*name validator: {
             if (it.length()<3) return ['entryMissing']

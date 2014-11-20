@@ -9,12 +9,14 @@ import com.linksharing.Subscription
 import com.linksharing.Topic
 import com.linksharing.User
 import com.linksharing.Visibilty
+import grails.plugin.mail.MailService
 import org.codehaus.groovy.grails.web.context.ServletContextHolder
 import org.springframework.web.multipart.MultipartFile
 /**
  * Created by intelligrape on 8/11/14.
  */
 class UserPersistService {
+    def mailService
     public createUser(User user){
         println "UserPersist Service :: createUser() started..."
         println("UserPersist Service :: User Details :- "+user)
@@ -106,9 +108,16 @@ println( "Count ::- "+userCount)*/
         linkResource.user=user
         linkResource.topic=topic
         println("Link RESOURCE :: - "+linkResource.properties )
-        linkResource.save(flush: true)
-        ReadingItem ri=new ReadingItem(isRead:false,user: user,resource: linkResource)
+        linkResource.save(flush: true, failOnError: true)
+        ReadingItem ri=new ReadingItem(isRead:true,user: user,resource: linkResource)
         ri.save()
+        List<Subscription> subscriptionList=Subscription.findAllByTopic(topic)
+        subscriptionList.each {
+            if(user!=it.user){
+            ReadingItem riObj=new ReadingItem(isRead:false,user: it.user,resource: linkResource)
+            riObj.save()
+            }
+        }
     }
     public addDocumentResource(String uId,DocumentResource documentResource,String tId){
 // LinkResource linkResource=new LinkResource(url :"http://www.youtube${i}.com/",topic: topicList[0],user: userList[0],description: "Description${i}")
@@ -232,4 +241,114 @@ println( "Count ::- "+userCount)*/
         }*/
         return resourceList
     }
+
+
+    def returnTopSubscriptions(String uId){
+        List<Subscription> subscriptionList=Subscription.createCriteria().list{
+
+            projections{
+                    groupProperty('topic')
+            }
+            "user"{
+                eq('id',uId.toLong())
+            }
+            "topic"{
+                "resources"{
+                order('lastUpdated','desc')
+            }
+            }
+        }
+        println("returnTopSubscriptions :: " + subscriptionList)
+    return subscriptionList
+    }
+
+    def returnUserInbox(String uId){
+        List<ReadingItem> readingItemList=ReadingItem.createCriteria().list{
+
+            projections{
+                groupProperty('resource')
+            }
+            eq('isRead',false)
+
+
+            "user"{
+                eq('id',uId.toLong())
+            }
+                "resource"{
+                    order('lastUpdated','desc')
+
+        }
+        }
+        println("returnUserInbox :: " + readingItemList)
+        return readingItemList
+    }
+
+
+
+    def returnUserSeriousSubsRes(String uId){
+        List<ReadingItem> readingSubsResList=ReadingItem.createCriteria().list{
+
+            projections{
+                groupProperty('resource')
+            }
+            eq('isRead',false)
+
+            "user"{
+                eq('id',uId.toLong())
+            }
+            "resource"{
+                "topic"{
+                    "subscriptions"{
+                        eq('seriousness',Seriousness.SERIOUS)
+                }
+            }
+          }
+            maxResults(5)
+        }
+        println("returnUserSeriousSubsRes :: - " + readingItemList)
+        return readingSubsResList
+    }
+
+    def topPost(){
+        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list{
+            projections{
+                groupProperty('resource')
+                avg('score','avge')
+            }
+            order('avge','desc')
+        }*.getAt(0)
+        //if(resourceRatingList.size()>0) res
+        println("resourceRatingList :: " + resourceRatingList)
+        return resourceRatingList
+    }
+
+    def sendMailService(){
+
+        try
+        {
+            println "coming for sendmail<><><><><><><><>topics name "
+          //  println("mailSe :- "+mailService.class)
+           // println("mailSe... :- "+mailService.properties)
+            mailService.sendMail {
+                to "namang@intelligrape.com"
+                from "vaibhavs@intelligrape.com"
+                subject "Mail Testing Linksharing"
+                body "Hi this is test mail from vaibhav's link sharing.."
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace()
+        }
+
+
+    }
+    def returnUserCreatedResources(User user){
+
+    List<Resource> resourceList=Resource.findAllByUser(user)
+        println("returnUserCreatedResources :: - "+resourceList)
+        return resourceList
+    }
+
+
 }

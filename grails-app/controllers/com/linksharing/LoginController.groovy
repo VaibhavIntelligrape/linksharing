@@ -1,6 +1,7 @@
 package com.linksharing
 
 import linksharing.UserPersistService
+import org.springframework.mail.MailSender
 import org.springframework.web.multipart.MultipartFile
 
 /**
@@ -35,8 +36,18 @@ class LoginController {
      //   List<ReadingItem> ls=ReadingItem.findAll("from ReadingItem as ri where ri.user.id=${userId} and ri.isRead=false order by lastUpdated desc ")
         //List<Resource> resources=Resource.findAll(" av  (score) from Resource as ri  order by lastUpdated desc ")
 
+        //for top post :-
 
-    }
+       List<Resource> tempResourceRatingList= userPersistService.topPost()
+        println("resourceRatingList :::: " +tempResourceRatingList.get(0).user.properties)
+        params["resourceRatingList"]=tempResourceRatingList
+       /* Resource resource=resourceRatingList.get(0)
+        println("User of Resouce :: - " +resource.user.properties)*/
+
+
+
+
+      }
 
 
     def loginHandler(){

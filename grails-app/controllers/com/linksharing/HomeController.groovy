@@ -1,13 +1,15 @@
 package com.linksharing
 
+import grails.util.Holders
 import linksharing.UserPersistService
 
 class HomeController {
 
+    def userPersistService
     def index() {}
 
     def dashBoard() {
-        if(session["user"]){
+
         println("In dsh....")
 
         println "Welcome ,"+session["user"]
@@ -16,7 +18,6 @@ class HomeController {
             String uId=session["user_id"]
 
         request.setAttribute("user",session["user"])
-            UserPersistService userPersistService =new UserPersistService()
 
          //For user detail page :-
          User user=userPersistService.returnUser(uId)
@@ -37,6 +38,8 @@ class HomeController {
             params["userTopicListSize"]=topicList.size()
 
 
+        List<Subscription> subscriptions1=Subscription.findAllByUser(user)
+            params["subscriptionsList"]=subscriptions1
 
         List<Resource> resourceList=userPersistService.recentShares();
         println("resourceList :: "+resourceList)
@@ -54,12 +57,28 @@ class HomeController {
             List<Topic> trendingTopicList=userPersistService.getTrendingTopics()
                 params["trendingTopicList"]=trendingTopicList
 
+        //for subscription box :-
+            List<Subscription> subscriptions=userPersistService.returnTopSubscriptions(uId)
+            params["subscriptions"]=subscriptions
 
-            userPersistService.returnUserSubscriptions1(user)
+            //for user inbox :-
+            userPersistService.returnUserInbox(uId)
+
+            //for top post :-
+
+           List<ResourceRating> resourceRatingList= userPersistService.topPost()
+            params["resourceRatingList"]=resourceRatingList
 
 
-        }
+         //for mail :-
+        /*UserPersistService userPersistService=Holders.grailsApplication.mainContext.getBean 'userPersistService'*/
+
+        /*userPersistService.sendMailService()*/
+
+        userPersistService.returnUserSeriousSubsRes(uId)
     }
+
+
 }
 
 

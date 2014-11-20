@@ -43,7 +43,7 @@
 <div>
 <g:render template="user_detail" />
 </div>
-<div>
+    <div style="border:solid thick ;border-radius: 25px;height:250px;width:450px;overflow:scroll;margin-bottom: 2px">
 <g:render template="subscription"  />
 </div>
 

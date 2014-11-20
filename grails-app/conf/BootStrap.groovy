@@ -5,6 +5,7 @@ import com.linksharing.Seriousness
 import com.linksharing.Subscription
 import com.linksharing.Topic
 import com.linksharing.User
+import com.linksharing.UserCommand
 import com.linksharing.Visibilty
 import linksharing.UserPersistService
 
@@ -33,11 +34,17 @@ class BootStrap {
         User obj = new User(firstName: "Vaibhav",lastName: "Sharma",email: "vaibhav@gmail.com",username: "vaibhav", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg",isAdmin: "false")
         userPersistService.createUser(obj)
 
-        User obj1 = new User(firstName: "Mohit",lastName: "Sharma",email: "mohit@gmail.com",username: "mohit", password: "12345", confirmPassword:  "12345", image: "VAIBHAV.jpg",isAdmin: "false")
+        User obj1 = new User(firstName: "Mohit",lastName: "Sharma",email: "mohit@gmail.com",username: "mohit", password: "12345", confirmPassword:  "12345", image: "mohit.jpg",isAdmin: "false")
         userPersistService.createUser(obj1)
 
-        User obj2 = new User(firstName: "Sujeet",lastName: "Kumar",email: "sujeet@gmail.com",username: "sujeet", password: "12345", confirmPassword:  "12345", image: "VAIBHAV.jpg",isAdmin: "false")
+        User obj2 = new User(firstName: "Sujeet",lastName: "Kumar",email: "sujeet@gmail.com",username: "sujeet", password: "12345", confirmPassword:  "12345", image: "sujet.jpg",isAdmin: "false")
         userPersistService.createUser(obj2)
+
+        UserCommand cmdObj =new UserCommand(firstName: "Ankit",lastName: "Kumar",email: "ankit@gmail.com",username: "ankit", password: "12345", confirmPassword:  "12345", image: "person1.jpg",isAdmin: "false")
+        User obj3 =new User()
+        obj3.properties=cmdObj.properties
+        userPersistService.createUser(obj3)
+
 
         //to create topic :-
         Topic to = new Topic(name: "Grails", visibility: Visibilty.PUBLIC, user: obj)
