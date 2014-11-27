@@ -15,7 +15,6 @@
 <%List<Topic> ls=params["subscriptions"]
 User user=params["userObject"]
 %>
-
 <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:440px ;height: 300px">
     <thead>
     <tr>
@@ -28,35 +27,40 @@ User user=params["userObject"]
     <%ls.each {if (it!=null ){
     %>
     <%if(session["user_id"]==it.user.id){%>
+
     <tr>
-        <th scope="row" style="text-align: left;">
-            <g:form method="get" url="[controller:'Topic',action:'createUserTopic']">
-                <div>
+        <th scope="row" style="text-align: left;background: url('/linksharing/home/ban2.jpeg');">
+            <div>
+            <g:form  method="get" url="[controller:'Topic',action:'createUserTopic']">
                     <div style="float: left">
-                <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="45"  /></p>
+                <p>&nbsp;&nbsp; <img style="border: 4px groove black" alt="BlankImage" src="/linksharing/home/${it.user.image}" width="80" height="100" /></p>
                     </div>
-                <div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="name" type="text" value="${it.name}" /><input name="save" type="submit" value="Save" />
+                <div style="float: right; width: 303px;">
+                    <p><input name="name" type="text" value="${it.name}" /><input name="save" type="submit" value="Save" /></p>
 
                     <div>
-                        <div style="float: left;padding-left: 170px">
+                        <div style="float: left;">
                             <p>Subscription</p>
                             <p>${it.subscriptions.size()}</p>
                         </div>
-                        <div>
+                        <div style="float: left">
                             <p>Posts</p>
                             <p>${it.resources.size()}</p>
                         </div>
 
-
-                        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <select name="seriousness"><option value="Serious">Serious</option><option value="VerySerious">VerySerious</option> </select> <select name="visibility"><option value="PRIVATE">PRIVATE</option><option value="PUBLIC">PUBLIC</option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </select>&nbsp;&nbsp; <img alt="mail" height="23" src="/linksharing/home/message.jpeg" title="mail" width="23" />
+                        <div style="float: left;clear: left">
+                        <select name="seriousness"><option value="Serious">Serious</option><option value="VerySerious">VerySerious</option> </select> <select name="visibility"><option value="PRIVATE">PRIVATE</option><option value="PUBLIC">PUBLIC</option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </select>&nbsp;&nbsp; <img alt="mail" height="23" src="/linksharing/home/message.jpeg" title="mail" width="23" />
                             <img alt="mail" height="23" src="/linksharing/home/editPage.jpeg" title="mail" width="23" />
                             <img alt="mail" height="23" src="/linksharing/home/delete.jpeg" title="mail" width="23" />
-                        </p>
+                        </div>
                     </div>
                 </div>
-            </g:form>        </th>
+                </div>
+            </g:form>
+            </div>
+        </th>
     </tr>
+
     <%}else{
         String toId=it.id
         String flag=false
@@ -67,16 +71,16 @@ User user=params["userObject"]
         }
     %>
     <tr>
-        <th scope="row" style="text-align: left;">
+        <th scope="row" style="background: url('/linksharing/home/ban2.jpeg');">
             <div style="float: left">
-                <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="45"  />&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+                <p>&nbsp;&nbsp; <img style="border: 4px groove black" alt="BlankImage" src="/linksharing/home/${it.user.image}" width="80" height="100"  />&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
             </div>
-            <div style="">
-                <g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'><p>${it.name}</p></g:link>
-                <p> ${it.user.email}</p>
+            <div>
+                <g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'><p style="margin-right: 130px;">${it.name}</p></g:link>
+                <p style="margin-left: 10px"> ${it.user.email}</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%if(!flag==true){%>Subscribe<%}%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subscription&nbsp;&nbsp; post</p>
 
-                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${it.subscriptions.size()}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;${it.resources.size()}&nbsp;</p>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;${it.subscriptions.size()}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;${it.resources.size()}&nbsp;</p>
             </br>
 
             </div>
@@ -95,7 +99,6 @@ User user=params["userObject"]
     </tr>--}%
     </tbody>
 </table>
-
 %{--<g:userInbox/>--}%
 </body>
 </html>

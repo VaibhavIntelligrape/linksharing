@@ -4,7 +4,7 @@ class User {
 
     String firstName;
     String lastName;
-    String username;
+    String userName;
     String image;
     String email
     String password

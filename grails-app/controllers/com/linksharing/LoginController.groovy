@@ -84,12 +84,12 @@ class LoginController {
         //For image :-
         MultipartFile uploadedFile = params['image']
         if(!uploadedFile.empty){
-            println "Class: ${uploadedFile.class}"
+            /*println "Class: ${uploadedFile.class}"
             println "Name: ${uploadedFile.name}"
             println "OriginalFileName: ${uploadedFile.originalFilename}"
             println "Size: ${uploadedFile.size}"
             println "ContentType: ${uploadedFile.contentType}"
-
+*/
            /* def webRootDir = servletContext.getRealPath("/")
             def userDir = new File(webRootDir, "/linksharing/assets/images")
             userDir.mkdirs()
@@ -111,7 +111,7 @@ class LoginController {
         user.email=params["email"]
         user.password=params["password"]
         user.confirmPassword=params["confirmpassword"]
-        user.username=params["username"]
+        user.userName=params["username"]
         user.firstName=params["firstname"]
         user.lastName=params["lastname"]
         user.isAdmin="false"
@@ -126,7 +126,7 @@ class LoginController {
             redirect(url: '/')
         }
         else {
-            println("COrrect User ::  going to redirect .... ")
+            println("InCOrrect User ::  going to redirect .... ")
             redirect(controller:'login',action:'index')
         }
     }

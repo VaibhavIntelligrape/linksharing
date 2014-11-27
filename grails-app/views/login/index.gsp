@@ -21,7 +21,7 @@
 <body>
 <div class="body">
     <div style="border: solid thick ;align-self: auto;height: 50px;">
-        <div style="float: left">
+        %{--<div style="float: left">
         <header><b>LinkSharing App</b></header>
         </div>
             <div style="float: right; margin-top: 0px">
@@ -29,24 +29,25 @@
                 <input id="search-input" name="search" type="text">
                 <input src="/linksharing/home/searchbutton3.gif" name="submit" type="image">
             </form>
-        </div>
+        </div>--}%
+        <g:render template="/home/header_home"></g:render>
     </div>
     <div style="margin-top: 5px">
-<div style="float: left;">
+<div style="float: left;margin-top: 70px;margin-left: 50px">
     <%if(params.message!=null){%>
-    <%out.println(params.message)
-        }%>
+    <b>${params.message}</b>
+    <%    }%>
     %{--<div style="border:solid thick ;float: left;clear: left;float: left;height:200px;width:500px;overflow:scroll;">--}%
     <div style="border:solid thick ;border-radius: 25px;height:250px;width:450px;overflow:scroll;">
         <g:render template="recent_shares"  />
     </div>
 
-    <div style="border:solid thick ;float: left;clear: left;float: left;height:200px;width:500px;overflow:scroll;">
+    <div style="border:solid thick ;float: left;clear: left;float: left;height:200px;width:430px;overflow:scroll;">
         <g:render template="top_post"  />
     </div>
 </div>
-    <div style="float: right;width: 450px">
-    <div style="border:solid thick ;right:50px;top: 0px ;float: right" >
+    <div style="float: right;width: 450px;margin-right: 50px;margin-top: 80px">
+    <div style="border:solid thick ;margin-right: 90px;margin-bottom:20px; border-radius:20px;right:50px;top: 0px ;float: right;background: url('/linksharing/home/ban2.jpeg');" >
 <%if(request.getAttribute("msg")!=null){
     println(request.getAttribute("msg").toString())
     out.println(request.getAttribute("msg").toString())} %>
@@ -58,8 +59,8 @@
         <tr><td colspan="2"><input value="Login" type="submit"/></td></tr>
     </table>
 </g:form>
-
-
+</div>
+        <div style="border:solid thick ;border-radius:20px;right:50px;top: 0px ;float: right;background: url('/linksharing/home/ban2.jpeg');" >
 
     <g:uploadForm action="register" method="post">
         <table>
@@ -68,7 +69,7 @@
             <tr><td>Username:</td><td><input id="username" name="username" type="text"/></td></tr>
             <tr><td>Email:</td><td><input id="email" name="email"  type="email"/></td></tr>
             <tr><td>Password :</td><td><input id="password" name="password" type="password"/></td></tr>
-            <tr><td>Confirm Password:</td><td><input id="confirmpassword" name="confirmpassword"  type="text"/></td></tr>
+            <tr><td>Confirm Password:</td><td><input id="confirmpassword" name="confirmpassword"  type="password"/></td></tr>
             <tr><td>Image:</td><td><input id="image" name="image"  type="file"/></td></tr>
             <tr><td colspan="2"><input value="Register" type="submit"/></td></tr>
         </table>

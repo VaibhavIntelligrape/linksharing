@@ -30,7 +30,7 @@
     <%ls.each {
     %>
     <tr>
-        <th scope="row" style="text-align: left;">
+        <th scope="row" style="text-align: left;background: url('/linksharing/home/ban2.jpeg');">
             <div>
                 <div style="float: left;">
                    <%if(it.user.image!=null){%>

@@ -18,7 +18,7 @@
 <%
     List<Resource> ls=params['resourceRatingList']%>
 
-<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:425px">
     <thead>
     <tr>
         <th colspan="2" scope="row">
@@ -30,7 +30,7 @@
     <%ls.each {
     %>
     <tr>
-        <th scope="row" style="text-align: left;">
+        <th scope="row" style="text-align: left;background: url('/linksharing/home/ban2.jpeg');">
             <div>
                 <div style="float: left;">
                     <%if(it.user.image!=null){%>
@@ -40,9 +40,9 @@
                         <%}%>
                 </div>
                 <div>
-                    <p>${it.user.username} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
+                    <p>${it.user.userName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 100px"> ${it.topic.name}</span><br />
                         &nbsp;</p>
-                    <p >${it.user.username}</p>
+                    <p >${it.user.userName}</p>
                     ${it.description} </p>
 
                 </div>

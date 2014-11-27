@@ -33,6 +33,45 @@ class UserPersistService {
 
         println("IN Create User ...... :: "+user.firstName)
     }
+
+    public updateUserProfile(User user){
+        println "UserPersist Service :: updateUserProfile() started..."
+        println("UserPersist Service :: User Details :- "+user.properties)
+
+          int status=  User.executeUpdate("update User u set u.firstName=:fname,u.lastName=:lname,u.userName=:uname,u.image=:image where u.id=:uId",
+  [fname: user.firstName,lname: user.lastName,uname: user.userName,image: user.image,uId:user.id])
+        if (status!=0) {
+            return true
+        }
+/*println user.errors.allErrors*/
+        else {
+            user.errors.each {
+                println it
+            }
+            return false}
+
+        println("IN updateUserProfile  ...... :: "+user.firstName)
+    }
+
+    public updateUserPassword(User user){
+        println "UserPersist Service :: updateUserPassword() started..."
+        println("UserPersist Service :: User Details :- "+user.properties)
+
+        int status=  User.executeUpdate("update User u set u.password=:passw where u.id=:uId",
+                [passw: user.password,uId: user.id])
+        if (status!=0) {
+            return true
+        }
+/*println user.errors.allErrors*/
+        else {
+            user.errors.each {
+                println it
+            }
+            return false}
+
+        println("IN updateUserPassword  ...... :: "+user.firstName)
+    }
+
     public recentShares(){
         println("Recent Shars :::")
 /* Book.findAll("from Book as b where b.author=? order by b.releaseDate",
@@ -305,7 +344,7 @@ println( "Count ::- "+userCount)*/
           }
             maxResults(5)
         }
-        println("returnUserSeriousSubsRes :: - " + readingItemList)
+        println("returnUserSeriousSubsRes :: - " + readingSubsResList)
         return readingSubsResList
     }
 

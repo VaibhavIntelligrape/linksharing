@@ -30,17 +30,16 @@ class BootStrap {
 
 
         UserPersistService userPersistService = new UserPersistService()
-
-        User obj = new User(firstName: "Vaibhav",lastName: "Sharma",email: "vaibhav@gmail.com",username: "vaibhav", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg",isAdmin: "false")
+        User obj = new User(firstName: "Vaibhav",lastName: "Sharma",email: "vaibhav@gmail.com",userName: "vaibhav", password: "12345", confirmPassword: "12345", image: "VAIBHAV.jpg",isAdmin: "false")
         userPersistService.createUser(obj)
 
-        User obj1 = new User(firstName: "Mohit",lastName: "Sharma",email: "mohit@gmail.com",username: "mohit", password: "12345", confirmPassword:  "12345", image: "mohit.jpg",isAdmin: "false")
+        User obj1 = new User(firstName: "Mohit",lastName: "Sharma",email: "mohit@gmail.com",userName: "mohit", password: "12345", confirmPassword:  "12345", image: "mohit.jpg",isAdmin: "false")
         userPersistService.createUser(obj1)
 
-        User obj2 = new User(firstName: "Sujeet",lastName: "Kumar",email: "sujeet@gmail.com",username: "sujeet", password: "12345", confirmPassword:  "12345", image: "sujet.jpg",isAdmin: "false")
+        User obj2 = new User(firstName: "Sujeet",lastName: "Kumar",email: "sujeet@gmail.com",userName: "sujeet", password: "12345", confirmPassword:  "12345", image: "sujet.jpg",isAdmin: "false")
         userPersistService.createUser(obj2)
 
-        UserCommand cmdObj =new UserCommand(firstName: "Ankit",lastName: "Kumar",email: "ankit@gmail.com",username: "ankit", password: "12345", confirmPassword:  "12345", image: "person1.jpg",isAdmin: "false")
+        UserCommand cmdObj =new UserCommand(firstName: "Ankit",lastName: "Kumar",email: "ankit@gmail.com",userName: "ankit", password: "12345", confirmPassword:  "12345", image: "person1.jpg",isAdmin: "false")
         User obj3 =new User()
         obj3.properties=cmdObj.properties
         userPersistService.createUser(obj3)
@@ -75,6 +74,10 @@ class BootStrap {
         userPersistService.addLinkResource(obj.id.toString(), lr2, to1.id.toString())
         LinkResource lr3 = new LinkResource(url: "http://www.intelligrape.com/", topic: to2, user: obj, description: "Added by Vaibhav in Aws")
         userPersistService.addLinkResource(obj.id.toString(), lr3, to2.id.toString())
+        LinkResource lr4 = new LinkResource(url: "http://www.galgotia.com/", topic: to1, user: obj1, description: "Added by Mohit in Node")
+        userPersistService.addLinkResource(obj1.id.toString(), lr4, to1.id.toString())
+        LinkResource lr5 = new LinkResource(url: "http://www.java.com/", topic: to1, user: obj2, description: "Added by Sujeet in Node")
+        userPersistService.addLinkResource(obj2.id.toString(), lr5, to1.id.toString())
 
         //to rate the resources :-
         userPersistService.resourceRating(5,obj,lr)

@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-    <meta name="layout" content="main">
+    %{--<meta name="layout" content="main">--}%
     <title></title>
 </head>
 
@@ -18,7 +18,7 @@
 <%List<Resource> ls=(List<Resource>)request.getAttribute("inboxList")
 User user=params["userObject"]
 %>
-<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px">
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="width:450px;">
     <thead>
     <tr>
         <th colspan="2" scope="row">
@@ -30,20 +30,20 @@ User user=params["userObject"]
     <%ls.each {
                 %>
     <tr>
-        <th scope="row" style="text-align: left;">
+        <th scope="row" style="text-align: left;background: url('/linksharing/home/ban2.jpeg');">
             <div>
             <div style="float: left;">
-            <p>&nbsp;&nbsp; <img alt="BlankImage" src="/linksharing/home/${it.user.image}" width="55"  />
+            &nbsp;&nbsp; <img style="border: 4px groove black;margin-top: 0px"  alt="BlankImage" src="/linksharing/home/${it.user.image}"  width="80" height="100"  />
             </div>
-            <div style="margin-left: 80px">
-            <p>${it.user.firstName} ${it.user.lastName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="padding-left: 50px"> %{--<g:link controller="topic" action="topicShow" params='[tid:"${it.id}"]'>--}%${it.topic.name}%{--</g:link>--}%</span><br />
-                &nbsp;${it.user.username}</p>
+            <div style="margin-left: 120px; font-size: inherit;">
+            <p>${it.user.firstName} ${it.user.lastName} &nbsp; <g:diffTime val="${it.lastUpdated}" /> <span style="float: right"> <g:link controller="topic" action="topicShow" params='[tid:"${it.topic.id}"]'>${it.topic.name}</g:link></span><br />
+                &nbsp;${it.user.userName}</p>
              </br>
             ${it.description} </p>
 
              </div>
                 <div>
-                    <p><img alt="" src="/linksharing/assets/fb.jpeg" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/twitter_ico.png" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/gPlus.png" width="15"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>Download</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewFullSite</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>MarkAsRead</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u><g:link controller="post" action="index" params='[rid:"${it.id}"]'>ViewPost</g:link></u></span></span></p>
+                    <p><img alt="" src="/linksharing/assets/fb.jpeg" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/twitter_ico.png" width="15"/>&nbsp; <img alt="" src="/linksharing/assets/gPlus.png" width="15"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>Download</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>ViewFullSite</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u>MarkAsRead</u></span></span> <span style="font-size:9px;"><span style="color: rgb(0, 0, 255);"><u><g:link controller="post" action="index" params='[rid:"${it.id}"]'>ViewPost</g:link></u></span></span></p>
                 </div>
         </div>
         </th>

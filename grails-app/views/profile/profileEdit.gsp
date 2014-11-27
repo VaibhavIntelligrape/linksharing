@@ -9,21 +9,30 @@
 <head>
     <meta name="layout" content="main">
     <title></title>
+<script type=text/javascript>
+    function alertMessage(){
+        print(".........in alert...")
+       alert('${params["msg"]}');
+    }
+</script>
 </head>
-<%User user=params["userObject"]%>
-<body>
+<%User user=params["userObject"]
+println("---Usre ---- :- "+user.properties)
+%>
+<body onload="alertMessage()">
+%{--<button onclick="alertMessage()">button</button>--}%
 <div class="container">
     <div class="header">
 
         <div style="border: solid thick ;align-self: auto;height: 50px;">
             <div style="float: left">
-                <header><b>LinkSharing App</b></header>
+                <header><b>LinkSharing App.....</b></header>
             </div>
             <div style="float: right; margin-top: 0px;">
                 <div style="float: right">
 
                     <input src="/linksharing/home/atchmnt.jpeg" name="submit" type="image"style="height: 15px ;width: 15px"><input src="/linksharing/home/page.png" name="submit" type="image"style="height: 15px ;width: 15px">
-                    <input src="/linksharing/home/${user.image}" name="submit" type="image"style="height: 15px ;width: 15px">${user.username}<input src="/linksharing/home/drop.jpeg" name="submit" type="image"style="height: 15px ;width: 15px">
+                    <input src="/linksharing/home/${user.image}" name="submit" type="image"style="height: 15px ;width: 15px">${user.userName}<input src="/linksharing/home/drop.jpeg" name="submit" type="image"style="height: 15px ;width: 15px">
                 </div>
                 <div style="float: right">
                     <form id="search-form" name="search" action="/products" method="get">

@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <body>
-<div>
-<g:form url="[controller:'Topic',action:'createUserTopic']" method="get">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create Topic
+
+
+            <g:form url="[controller:'Topic',action:'createUserTopic']" method="get">&nbsp;&nbsp;Create Topic
+                <input src="/linksharing/home/cancel.jpeg" name="cancel" class="cancel" id="cancel" type="image" style="border:hidden;float: right;margin-right:8px;margin-top:3px;height: 16px ;width: 16px;padding: 0px">
     <hr />
+                <div style="background: url('/linksharing/home/ban2.jpeg');">
     <p>Name * : <input name="name" type="text" value="" /></p>
 
     <p>&nbsp;</p>
