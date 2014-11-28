@@ -18,8 +18,26 @@
 	</head>
 	<body style="background-color:skyblue">
 		%{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>--}%
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+        <g:render template="/home/header_home"/>
+        <g:layoutBody/>
+
+    <div class="createTopic" id="createTopic" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:248px;width:450px;margin: auto;">
+        <g:render template="/home/createTopic"  />
+        %{--<g:myTag name="vaibhav from taglib"></g:myTag>--}%
+    </div>
+    <div class="senInvite" id="senInvite" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:200px;width:450px;margin: auto;">
+        <g:render template="/home/senInvite"  />
+    </div>
+    <div class="createDocumentRes" id="createDocumentRes" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:265px;width:450px;margin: auto;">
+        <g:render template="/home/createDocumentRes"  />
+    </div>
+    <div class="createLinkRes" id="createLinkRes" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:260px;width:450px;margin: auto;">
+        <g:render template="/home/createLinkRes"  />
+    </div>
+
+
+
+    <div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 	</body>
 </html>

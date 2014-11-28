@@ -1,17 +1,17 @@
-<%@ page import="com.linksharing.User" %>
-<%User user=params["userObject"]%>
+<%@ page import="linksharing.UserPersistService; com.linksharing.User" %>
+%{--<%User user=params["userObject"]%>--}%
 
 <div style="background: url('/linksharing/home/links_banner1.jpg'); border: solid thick ;align-self: auto;height: 150px;">
 
     <div style="float: right; margin-top: 0px;">
         <%
 //            session["user_id"]!=null
-if(user!=null)
+if(session["user_id"]!=null)
 {
-
-        %>
-
-
+    String uId=session["user_id"]
+    UserPersistService userPersistService=new UserPersistService()
+            User user=userPersistService.returnUser(uId)
+ %>
         <div style="float: right;" >
             <input src="/linksharing/home/chat.jpeg" name="chat" id="chat" type="image" style="height: 25px ;width: 20px;padding: 0px"><input id="msg" src="/linksharing/home/msg.jpeg" name="submit" type="image"style="height: 25px ;width: 20px;padding: 0px">
             <input src="/linksharing/home/atchmnt.jpeg" name="submit" id="atchmnt" type="image"style="height: 25px ;width: 20px;padding: 0px"><input src="/linksharing/home/page.png"  id="page" name="submit" type="image"style="height: 25px ;width: 20px;padding: 0px">
@@ -84,8 +84,42 @@ if(user!=null)
                     return false;
                 });
 
+              /*  $("#topicSaveB").click(function(){
+                    alert("bjdbdvm lfmvlmv");
+                    return false;
+                });
+*/
 
             });
+
+
+/*
+
+            $('#topicSaveB').click(function() {
+                var topicName=document.getElementById("name")
+                var visibile=document.getElementById("visibility")
+                $.ajax({
+                    url:"${g.createLink(controller:'topic',action:'createUserTopic')}",
+                    dataType:'json'
+                    beforeSend: function() {
+                        $('spinner').style.display = visible ? "inline" : "none";
+                    }
+                    data: {name: topicName,visibility: visibile}
+                    success: function(data) {
+                        alert(data)
+                    },
+                    error: function(request, status, error) {
+                        alert(error)
+                    },
+                    complete: function() {
+                    }
+                });
+
+                return false;
+
+
+            });
+*/
 
 
 

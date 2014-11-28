@@ -14,7 +14,7 @@
 
 <body>
 <%User user=params["userObject"]%>
-<g:render template="header_home"/>
+%{--<g:render template="header_home"/>--}%
 <div class="container">
 %{--<b>Welcome, Dear ${request.getAttribute("userName")?request.getAttribute("userName").toString(): "no user"} </b>--}%
 <br>
@@ -51,6 +51,8 @@
     </div>
 </div>
 </div>
+%{--
+
 <div class="createTopic" id="createTopic" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:200px;width:450px;margin: auto;">
     <g:render template="createTopic"  />
 </div>
@@ -63,18 +65,8 @@
 <div class="createLinkRes" id="createLinkRes" hidden="hidden" style="position: absolute;top: 0px;left: 0px;bottom: 0px;z-index: 500;background-color:#f5f5f5; right: 0px;border:solid thick ;border-radius: 25px;height:260px;width:450px;margin: auto;">
     <g:render template="createLinkRes"  />
 </div>
+--}%
 
-<script type="text/javascript">
-    $(function() {
-        $('#b1').click(function() {
-//            $('#fancybox').toggle(1000);
-            $('#fancybox').toggle(1000);
-            return false;
-        });
-
-    });
-
-</script>
 %{--<g:myTag name="vaibhav from taglib"></g:myTag>--}%
 </body>
 </html>

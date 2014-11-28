@@ -30,7 +30,7 @@
                 <input src="/linksharing/home/searchbutton3.gif" name="submit" type="image">
             </form>
         </div>--}%
-        <g:render template="/home/header_home"></g:render>
+        %{--<g:render template="/home/header_home"></g:render>--}%
     </div>
     <div style="margin-top: 5px">
 <div style="float: left;margin-top: 70px;margin-left: 50px">

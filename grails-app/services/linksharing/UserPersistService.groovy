@@ -236,18 +236,31 @@ println( "Count ::- "+userCount)*/
     }
 
     def createTopic(Topic topic) {
-        topic.save()
         println("create topic started ....")
+        println("TOpic Dtails :: "+topic)
+        if(!topic.save()){
+            topic.errors.each {
+                println it}
+                return false
+        }
+            else{
+        topic.save()
         User user=topic.user
         user.addToTopics(topic)
         println("Topic from user object :- "+user.topics)
         Subscription su = new Subscription(seriousness: Seriousness.SERIOUS, user: user, topic: topic)
         UserPersistService userPersistService=new UserPersistService()
         userPersistService.createSubscription(su)
-
+        }
            }
     def createSubscription(Subscription subscription) {
+        if(subscription.save()){
         subscription.save()
+            return true
+        }else {subscription.errors.each {
+            println it}
+        return false
+        }
     }
 
 
@@ -296,6 +309,9 @@ println( "Count ::- "+userCount)*/
                 order('lastUpdated','desc')
             }
             }
+           /* isNull("topic")
+            isNotNull("topic")*/
+            maxResults(5)
         }
         println("returnTopSubscriptions :: " + subscriptionList)
     return subscriptionList

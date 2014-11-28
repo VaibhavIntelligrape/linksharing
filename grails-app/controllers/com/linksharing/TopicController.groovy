@@ -19,9 +19,16 @@ class TopicController {
         //topic.visibility=params["visibility"]
         topic.user=user
         println("Topic object :- "+topic.properties)
-        userPersistService.createTopic(                                                                                                                                                                                                                                                                                                                                                                                     topic)
-        //Topic to1=new Topic(name:"Grails",visibility: Visibilty.PUBLIC,user:u1)
-        //to1.save()
+        boolean status=userPersistService.createTopic(topic)
+        println("Topic save status :- "+status)
+        if (status==true){
+//            return "Topic saved.."
+            render("Topic successfully saved.")
+        }
+        else {
+//            return  "Topic not saved.."
+            render("Topic not saved.")
+        }
     }
 
     def topicShow(){
